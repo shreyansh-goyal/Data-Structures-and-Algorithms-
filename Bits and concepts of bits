@@ -1,0 +1,680 @@
+SOME BASIC FUNCTIONS OF THE BITMASKING
+
+MASK THE ITH BIT AND USING THE OR WE CAN PLACE THE 1 IN THE ITH BIT OF THE NUMBER 
+
+TO PLACE THE O AT THE ITH BIT WE MAKE THE MASK COMPLEMENT THE MASK AND THEN AND IT WITH THE NUMBER
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BITWSIE OPERATOR
+
+& BITWSIE AND
+| BITWISE OR 
+~ BITWISE NOT
+<<BITWSIE LEFT SHIFT
+>>BITWISE RIGHT SHIFT
+^ BITWISE XOR
+
+
+
+
+BITWISE LEFT OPERATOR WILL MULTIPLY THE NUMBER BY THE 2
+
+WHEN THE NUMBER IS ODD THAT IS 5 THEN 
+THE BINARY REPRESENTATION 101
+AFTER THE LEFT SHIFT 1010
+THE NUMBER WE GET IS 10
+
+
+
+
+
+BITWSIE RIGHT OPERATOR WILL DIVIDE THE NUMBER BY 2
+
+HOW THE NUMBER WILL LOOK WHENI IT IS ODD
+LO LET ME TAKE THE EXAMPLE OF THE NUMBER 5
+BINARY NUMBER OF 5 IS 
+101
+WHEN WE RIGHT SHIFT IT IT WILL BECOME 10 WHICH IS 2
+5/2 IS 2.5 WE GET 2
+
+
+WHAT WILL HAPPEN WHEN THE NUMBER IS 6
+110
+THE NUMBER WILL BECOME 11 WHICH IS 3
+
+
+
+
+
+SO WHY DO WE USE THE BITMASKING,WHEN WE USE THE BITMASKING IT SIGNIFICANTLY REDUCES THE TIME IN SOME OF THE OPERATIONS LIKE
+MULTIPLYING OR DIVIDING BY THE NUMBER 2.
+LETS SEE WHAT IS THE SCOPE OF THE BITMASKING.
+
+
+
+
+
+**********************************************************************************************************************************************
+QUESTION
+YOU ARE GIVEN A LIST OF NUMBERS WHERE ALL THE NUMBERS ARE OCCURING TWICE THEN WE HAVE TO FIND THE UNIQUE 
+NUMBER AMONGST OF THOSE NUMBERS HOW CAN WE DO THAT.
+
+
+SO THE TECHNIQUE IS 
+WHEN WE PERFORM 5^5 WE WILL GET THE ANSWER 0
+WHEN WE PERFORM 5^1^5 WE GET 1 AS THE ANSWER
+
+SO PERFORM EXOR OF ALL THE SERIES AND YOU WILL GET THE DESIRED RESULT.
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+QUESTION
+HOW TO FIND THE NUMBER IS ODD OR EVEN
+
+PERFORM THE AND WITH THE 1 AND IS THE RESULT IS 1 THE NUMBER IS ODD OTHERWISE IT IS EVEN
+
+101
+ &1
+---
+1
+---
+
+THUS WE GET 1 AS THE ANSWER
+********************************************************************************************************************************************
+********************************************************************************************************************************************
+QUESTION 
+HOW MANY BITS WE NEED TO CONVERT NUMBER A TO THE NUMBER B.
+
+WE CAN TAKE THE EXOR OF THE NUMBER AND THEN COUNT THE SETBITS.
+SETBITS ARE 1 IN THE NUMBER
+********************************************************************************************************************************
+
+
+**************************************************************************************************************************************
+QUESTION 
+HOW CAN WE DO XOR SWAPPING
+SO THE ANSWER IS
+A=5
+B=6
+
+A=A^B
+B=A^B
+A=A^B
+**********************************************************************************************************************************************
+**********************************************************************************************************************************************
+QUESTION
+HOW TO SET THE BIT OF THE NUMBER
+void setIthBit(int n,int i)
+{
+	int mask = 1<<i;
+	int m = n|mask;
+	return m;
+}
+**********************************************************************************************************************************************
+**********************************************************************************************************************************************
+QUESTION
+HOW TO CLEAR THE BITS OF THE SPECIFIC POSITION
+void clearbit(int n,int i)
+{
+	int mask= 1<<i;
+	mask=~(mask)
+	m=n&mask;
+	return m;
+}
+**********************************************************************************************************************************************
+**********************************************************************************************************************************************
+QUESTION
+SUBSEQUENCE PROBLEM
+HOW TO PRINT ALL THE SUBSEQUENCES OF THE PROBLEM
+
+SUPPORT THE STRING IS ABC THEN THE POSSIBLE SUBSEQUENCE OF THE STRING IS AND WE CAN GENERATE A CODE FOR THEM
+'' 000
+A  100
+B  010
+C  001
+AB 110
+BC 011
+AC 101
+ABC111
+
+SO IF THERE ARE N LETTERS IN THE STRING WE CAN GENERATE 2^N - 1 NUMBER OF THE SUBSEQUENCES
+
+
+
+IMPLEMENTATION OF THE PROGRAM CAN BE DONE AS FOLLOWS
+
+include <iostream>
+#include <cstring>
+using namespace std;
+//generate all the subsets using the bitmasking
+
+void filterChars(char *a,int no)
+{
+    int i=0;
+    //a=abc and the number is 5 then we get ac
+    while(no>0)
+    {
+        (no&1)?cout<<a[i]:cout<<"";
+        i++;
+        no=no>>1;
+    }
+    cout<<endl;
+}
+void generateSubsets(char *a)
+{
+    //generate the number from 0 to 2^N - 1
+    int n=strlen(a);
+    int range = (1<<n)-1;
+    for(int i=0;i<=range;i++)
+    {
+        filterChars(a,i);
+    }
+}
+
+int main() {
+    char a[100];
+    cin>>a;
+    generateSubsets(a);
+}
+
+**********************************************************************************************************************************************
+**********************************************************************************************************************************************
+QUESTION
+MARCHA CODE 
+1 PERSON AND 1 ROBBER,ROBBER SAY GIVE ME X AMOUNT OF RUPEES.
+PERSON HAVE 10,15,20,25,30 NOTES THAT WILL SUM TO THE 65.
+
+IS IT POSSIBLE FOR HIM TO GIVE THE SUM OF THE 65
+A PERSON CANNOT USE A NOTE TWICE THUS WHAT WE CAN DO IS.
+CREATE THE SUBSETS WHICH HAVE 2^N-1 CASES AND THEN ADD THOSE 2^N-1 CASES TO KNOW IS THIER SUM CONTRIBUES TO THE 
+THE SUM IS COMPUTED THEN WE CAN SAY THAT THE MONEY CAN BE GIVEN OTHERWISE NOT.
+***********************************************************************************************************************************************
+***********************************************************************************************************************************************
+QUESTION 
+UNIQUE NUMBER II
+IN A SEQUENCE OF NUMBERS ALL THE NUMBERS ARE PRESENTED TWICE EXCEPT TWO NUMBERS FIND THOSE TWO NUMBERS.
+
+TAKE THE EXOR OF ALL THE NUMBERS SO THAT REDUNDANT NUMBERS ARE REMOVED AFTER THIS.
+
+NOW COMPUTE THE SET BIT OF THE RESULT OF ALL THE NUMBER.NOW TAKE ALL THE NUMBERS CONSIDERING THE POSITION OF THE SINGLE SET BIT AND EXPOR THEM WE WILL GET THE FIRST NUMBER.
+THEN TAKE THE 0 AT THE SAME POSITION AND BY USING THE MASKING COMPUTE THE OTHER EXOR AND YOU WILL GET THE DESIRED RESULTS.
+**********************************************************************************************************************************************
+**********************************************************************************************************************************************
+QUESTION INCREDIBLE HULK PROBLEM
+THERE ARE N STEPS AND HULK CAN TAKE STEPS IN THE POWER OF 2 HOW MANY MINIMUM NUMBERS STEPS WILL HE TAKE TO REACH THE TOP OF THE NTH STEP
+
+ANS
+TAKE THE BINARY FORM N STEPS AND THEN COMPUTE THE SETBITS.
+*********************************************************************************************************************************************
+TAVAAS AND SADDAS
+THE LUCKY NUMBER CONTAINS THE NUMBER 4 AND 7 
+SO WE CAN SAY THAT THE NUMBER IS FORMED BY THE TWO NUMBER 4 AND 7
+IF THESE NUMBERS ARE ARRANGED IN THE ASCENDIN ORDER WE HAVE TO TELL WHICH WILL THE POSITION OF THE NUMBER 
+IN THE LIST OF SUCH NUMBERS
+
+
+SOLUTION
+CREATE A ARRAY OF CHARACHTER BECAUSE THE SEQUENCE IS VERY LONG ENOUGH
+STORE THE VALUE OF THE LENGTH OF THE CHAR ARRAY
+INITIALIZE THE ANSWER B ZERO
+ANS=(1<<DIGIT)-2
+OTHER LOOP TO COUNT THE DIGITS
+**********************************************************************************************************************************************
+**********************************************************************************************************************************************
+QUESTION
+UNIQUE NUMBER 3
+WHAT WILL HAPPEN IF THE SEQUENCE OF THE STRING CONSIST OF THE TRIO OF NUMBERS EXCEPT 1 NUMBER AND WE HAVE TO FIND THAT NUMBER.
+
+THE ANSWER IS MAKE A ARRAY,CONVERT THE NUMBER INTO THE BITS AND PLACE THEM INTO THE ARRAY BLOCK WISE.DO THIS PROCESS FOR ALL NUMBERS THEN TAKE THE MODULUS FROM 3 OF ALL THE ELEMENTS OF THE ARRAY.
+**********************************************************************************************************************************************
+**********************************************************************************************************************************************
+N QUEEN PROBLEM
+THERE IS N*N CHECKBOARD AND WE HAVE TO PLACE N QUEENS OVER THIS CHESSBOARD SO THAT NO QUEEN IS CUTTING EACH ITHER.
+
+WHAT DO WE DO TO SOLVE THIS PROBLEM
+PLACE THE QUEEN IN THE FIRST ROW AND CHECK WHERE CAN WE PLACE THE QUEEN IN THE SECOND ROW AND SO ON.IF WE ARE
+UNABLE TO FIND THE BLOCK TO INSERT THE QUEEN THEN BACKTRACK AND TRY TO CHNAGE THE POSITION OF THE PREVIOUS 
+QUEEN UNTIL NEW QUEEN IS ADJUSTED.
+TILL THE ROWNUMBER BECOMES THE N WE GOT THE ANSWER.
+COUNTING THE NUMBER OF CONFIGURAION LIKE THIS.
+
+IMPLEMENTATION OF THE PROGRAM
+WITHOUT THE BITMASKING
+#include <iostream>
+using namespace std;
+    bool isSafe(int board[][10],int i,int j,int n)
+    {
+        //column
+        for(int row=0;row<i;row++)
+        {
+            if(board[row][j]==1)
+            {
+                return false;
+            }
+        }
+        int x=i;
+        int y=j;
+        //left diagonal
+        while(x>=0&&y>=0)
+        {
+            if(board[x][y]==1)
+            {
+                return false;
+            }
+            x--;
+            y--;
+        }
+        //right diagonal
+         x=i;
+         y=j;
+        while(x>=0&&y<n)
+        {
+            if(board[x][y]==1)
+            {
+                return false;
+            }
+            x--;
+            y++;
+        }
+        //postion is now safe
+        return true;
+    }
+    bool solveNQueen(int board[][10],int i,int n)
+    {
+        //Base case
+        if(i==n)
+        {
+            //print the code
+            for(int i=0;i<n;i++)
+            {
+                for(int j=0;j<n;j++)
+                {
+                    if(board[i][j]==1)
+                    {
+                        cout<<"Q";
+                    }
+                    else
+                    {
+                        cout<<"_";
+                    }
+                }
+                cout<<"\n";
+            }
+            return true;
+        }
+        //Recursive Case
+        //Try to place the queen in the current row and call for the remaing part to place the queen over there
+        for(int j=0;j<n;j++)
+        {
+            //I have to check the i.j position is safe to place the queen or not
+            if(isSafe(board,i,j,n))
+            {
+                board[i][j]=1;
+                bool nextQueenRakhPaye=solveNQueen(board,i+1,n);
+                if(nextQueenRakhPaye)
+                {
+                    return true;
+                }
+                board[i][j]=0;//We have backtrack the position of the queen and marked the place with the 0
+            }
+        }
+        return false;
+    }
+int main() {
+    int n;
+    cin>>n;
+    int board[10][10]={0};
+    solveNQueen(board,0,n);
+}
+WE CAN GENERATE ALL THE CONFIGURATIONS JUST BY RETURNING FALSE FROM THE BASE CASE.
+**********************************************************************************************************************************************
+**********************************************************************************************************************************************
+SOLVING THE N QUEEN PROBLEM USING THE BITSETS
+HERE WHERE THE CODE WAS ISSAFE WAS O(N) COMPLEX WE COME WITH THE SOLUTION OF THE BITSETS WHICH HELPED US TO ACHIEVE A SOLUTION THAT IS SOLVING THE SAME PROBLEM IN O(1) TIME COMPLEXITY
+
+SO WHAT DO WE DO 
+WE TAKE 3 ARRAYS 
+1 FOR THE COLUMN
+WHENEVER A QUEEN IS PLACED WE MARKED THE COLUMN INDEX IN THIS ARRAY 1 AND USE TO CHECH THE COLUMN FROM THIS ARRAY WHICH GIVES THE O(1) COMPLEXITY
+
+1 FOR THE LEFT DIAGONAL
+FOR THE LEFT DIAGONAL WE KNOW THAT DIFFERENCE IN THE ROW AND COLUMN IS CONSTANT.WE TAKE ADVANTAGE OF THIS TO COMPUTE THE DESIRED RESULT
+
+1 FOR THE RIGHT DIAGONAL
+FOR THE RIGHT DIAGONAL WE KNOW THAT THE SUM OF THE ROW AND COUMN INDEX OF THE ELEMENT IN THE RIGHT DIAGONAL IS ALWAYS CONSTANT SO THAT WE CAN USE THIS ALSO TO COMPUTE THE SAME THING IN THE O(1) TIME COMPLEXITY
+
+SO FOR THIS PROBLEM WE WILL BE USING THE BITSETS AS THE STRUTURE TO STORE OUR DATA IN IT 
+**********************************************************************************************************************************************
+**********************************************************************************************************************************************
+DOCUMENTATION OF THE BITSET
+
+#include <bits/stdc++.h> 
+using namespace std; 
+  
+#define M 32 
+  
+int main() 
+{ 
+    // default constructor initializes with all bits 0 
+    bitset<M> bset1; 
+  
+    // bset2 is initialized with bits of 20 
+    bitset<M> bset2(20); 
+  
+    // bset3 is initialized with bits of specified binary string 
+    bitset<M> bset3(string("1100")); 
+  
+    // cout prints exact bits representation of bitset 
+    cout << bset1 << endl; // 00000000000000000000000000000000 
+    cout << bset2 << endl; // 00000000000000000000000000010100 
+    cout << bset3 << endl; // 00000000000000000000000000001100 
+    cout << endl; 
+  
+    // declaring set8 with capacity of 8 bits 
+  
+    bitset<8> set8; // 00000000 
+  
+    // setting first bit (or 6th index) 
+    set8[1] = 1; // 00000010 
+    set8[4] = set8[1]; // 00010010 
+    cout << set8 << endl; 
+  
+    // count function returns number of set bits in bitset 
+    int numberof1 = set8.count(); 
+  
+    // size function returns total number of bits in bitset 
+    // so there difference will give us number of unset(0) 
+    // bits in bitset 
+    int numberof0 = set8.size() - numberof1; 
+  
+    cout << set8 << " has " << numberof1 << " ones and "
+         << numberof0 << " zeros\n"; 
+  
+    // test function return 1 if bit is set else returns 0 
+    cout << "bool representation of " << set8 << " : "; 
+    for (int i = 0; i < set8.size(); i++) 
+        cout << set8.test(i) << " "; 
+  
+    cout << endl; 
+  
+    // any function returns true, if atleast 1 bit 
+    // is set 
+    if (!set8.any()) 
+        cout << "set8 has no bit set.\n"; 
+  
+    if (!bset1.any()) 
+        cout << "bset1 has no bit set.\n"; 
+  
+    // none function returns true, if none of the bit 
+    // is set 
+    if (!bset1.none()) 
+        cout << "bset1 has some bit set\n"; 
+  
+    // bset.set() sets all bits 
+    cout << set8.set() << endl; 
+  
+    // bset.set(pos, b) makes bset[pos] = b 
+    cout << set8.set(4, 0) << endl; 
+  
+    // bset.set(pos) makes bset[pos] = 1  i.e. default 
+    // is 1 
+    cout << set8.set(4) << endl; 
+  
+    // reset function makes all bits 0 
+    cout << set8.reset(2) << endl; 
+    cout << set8.reset() << endl; 
+  
+    // flip function flips all bits i.e.  1 <-> 0 
+    // and  0 <-> 1 
+    cout << set8.flip(2) << endl; 
+    cout << set8.flip() << endl; 
+  
+    // Converting decimal number to binary by using bitset 
+    int num = 100; 
+    cout << "\nDecimal number: " << num 
+         << "  Binary equivalent: " << bitset<8>(num); 
+  
+    return 0; 
+**********************************************************************************************************************************************
+**********************************************************************************************************************************************
+QUESTION DONE USING THE BITSETS
+#include <bits/stdc++.h>
+using namespace std;
+    bitset<30> column,leftDiagonal,rightDiagonal;
+    bool solveNQueen(int board[][10],int i,int n)
+    {
+        if(i==n)
+        {
+            for(int i=0;i<n;i++)
+            {
+                for(int j=0;j<n;j++)
+                {
+                    if(board[i][j]==1)
+                    {
+                        cout<<"Q";
+                    }
+                    else
+                    {
+                        cout<<"_";
+                    }
+                }
+                cout<<"\n";
+            }
+            return true;
+        }
+        for(int j=0;j<n;j++)
+        {
+            if(!column[j]&&!leftDiagonal[i-j+n]&&!rightDiagonal[i+j])
+            {
+                column[j]=leftDiagonal[i-j+n]=rightDiagonal[i+j]=1;
+                board[i][j]=1;
+                if(solveNQueen(board,i+1,n))
+                {
+                    return true;
+                }
+                else
+                {
+                column[j]=leftDiagonal[i-j+n]=rightDiagonal[i+j]=0;
+                board[i][j]=0;   
+                }
+            }
+        }
+        return false;
+    }
+int main() {
+    int n;
+    cin>>n;
+    int board[10][10]={0};
+    solveNQueen(board,0,n);
+    return 0;
+}
+
+
+COMPUTING TOTAL NUMBER OF THE CONFIGURATIONS THAT CAN BE DONE USING ABOVE FORMULA
+#include <bits/stdc++.h>
+using namespace std;
+    bitset<30> column,leftDiagonal,rightDiagonal;
+    bool solveNQueen(int i,int n,int* ans)
+    {
+        if(i==n)
+        {
+            *ans+=1;
+            return false;
+        }
+        for(int j=0;j<n;j++)
+        {
+            if(!column[j]&&!leftDiagonal[i-j+n]&&!rightDiagonal[i+j])
+            {
+                column[j]=leftDiagonal[i-j+n]=rightDiagonal[i+j]=1;
+                if(solveNQueen(i+1,n,ans))
+                {
+                    return true;
+                }
+                column[j]=leftDiagonal[i-j+n]=rightDiagonal[i+j]=0;
+            }
+        }
+        return false;
+    }
+int main() {
+    int n;
+    int ans=0;
+    cin>>n;
+    int board[10][10]={0};
+    solveNQueen(0,n,&ans);
+    cout<<ans;
+    return 0;
+}
+**********************************************************************************************************************************************
+**********************************************************************************************************************************************
+N QUEEN PROBLEM USING THE BITMASKING 
+
+TO OPTIMIZE THE PROBLEM WE SHOULD BE AWARE OF ONE OF THE CONCEPTS
+
+HOW TO CALCULATE THE NUMBER OF BITS AND POSITIONS OF SETBITS VERY FAST.I MEAN IN MINIMUM ITERATIONS
+P=N&(-N)
+N=N-P
+
+
+SUPPOSE THE N IS 9 THAT IS 1001
+THEN N=1001
+    -N=0111
+N&(-N)=0001=P
+AND N=N-P
+    N=1000
+
+
+THUS BY USING THIS CONCEPT WE CAN WASILY CALCUATE THE NUMBER OF SETBITS IN THE STRING OF 0 AND 1
+ 
+
+
+
+
+
+
+
+first iteration when n is 4
+rowmask=0
+ld =0
+rd =0
+safe=1111
+thus we can insert the queen at any position in the first row,
+
+
+
+NOW WE LOOP AND EXTRACT ALL THE SETBITS ONE BY ONE
+1
+10
+100
+1000
+THESE WILL BE THE 4 SET BITS LOOP
+WE OR THE SET BITS WITH THE COLUMN AND LET IS SHIFT IN THE CASE OF THE LEFT AND RIGHT DIAGONAL
+
+WE PASS THIS FUNCTION TO THE SOLVE AGAIN WITH THE CHANGED VALUW OF THE ROWMASK AND LD AND RD
+WE TAKE OR OF THE ROWMASK,LD AND RD AND INVERT IT USE THE DONE TO GET THE INBOUND VALUE OF SAFE PLACE
+
+SO IN THE NEXT ITERATION WE HAVE 1100 AS THE VALUE OF THE SAFE.
+WE AGAIN COMPUT THE SET BITS 
+100
+1000
+IF WE  INSERT HERE
+NEXT UPDATED ROWMASK WILL BE
+0101
+NEXT VALUE OF THE LD WILL BE
+1100
+NEXT VALUE OF THE RD WILL BE
+0010
+
+WHEN WE OR ALL THESE THERE IS NO SAFE PLACE HENCE AND ROWMASK WAS GAINED THE APPROPRIATE 1111 THUS WE CAN SAY THAT THIS IS THE FAILURE CASE 
+ 
+NOW LETS COMPUTE FOR THE SUCCESS CASE 
+
+WE KNOW SAFE =1111
+BUT WE CHOOSE THE THIRD CASE
+100
+ROWMASK UPDATES TO  0100
+LD UPDATES TO 1000
+RD UPDATES TO 0010
+
+THEN THE SAFE PLACE WE GET IN THE NEXT ITR
+0001
+NOW WE COMUTE THE P 
+WHICH IS 1
+NOW THE ROWMASK BECOMES
+**********************************************************************************************************************************************
+**********************************************************************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
